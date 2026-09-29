@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURELIA | Premium Jewellery House</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Icons (Phosphor Icons) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        maroon: '#5B2333',
+                        cream: '#F8F5F0',
+                        ivory: '#FFFFF0',
+                        gold: '#D4AF37',
+                        charcoal: '#333333'
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F8F5F0;
+            color: #333333;
+            overflow-x: hidden;
+            cursor: none; /* For custom cursor */
+        }
+
+        /* Custom Cursor */
+        #custom-cursor {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #5B2333;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background-color 0.3s;
+        }
+        .cursor-hover {
+            width: 50px !important;
+            height: 50px !important;
+            background-color: rgba(91, 35, 51, 0.1);
+        }
+
+        /* Animations */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .image-zoom-container {
+            overflow: hidden;
+        }
+        .image-zoom-container img {
+            transition: transform 1.5s ease;
+        }
+        .image-zoom-container:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Hero Image overlay for text readability */
+        .hero-gradient {
+            background: linear-gradient(to right, rgba(248,245,240,1) 0%, rgba(248,245,240,0.8) 40%, rgba(248,245,240,0) 100%);
+        }
+        @media (max-width: 1024px) {
+            .hero-gradient {
+                background: linear-gradient(to top, rgba(248,245,240,1) 0%, rgba(248,245,240,0.8) 50%, rgba(248,245,240,0) 100%);
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Custom Cursor -->
+    <div id="custom-cursor"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-6 px-6 lg:px-16 text-maroon bg-transparent flex justify-between items-center">
+        <a href="#" class="font-serif text-2xl tracking-widest font-semibold z-50">AURELIA</a>
+        
+        <!-- Desktop Menu -->
+        <div class="hidden lg:flex space-x-8 font-sans text-sm tracking-widest uppercase">
+            <a href="#home" class="hover:text-gold transition-colors hover-target">Home</a>
+            <a href="#collections" class="hover:text-gold transition-colors hover-target">Collections</a>
+            <a href="#jewellery" class="hover:text-gold transition-colors hover-target">Jewellery</a>
+            <a href="#our-story" class="hover:text-gold transition-colors hover-target">Our Story</a>
+            <a href="#contact" class="hover:text-gold transition-colors hover-target">Contact</a>
+        </div>
+
+        <div class="hidden lg:flex space-x-6 items-center">
+            <i class="ph ph-magnifying-glass text-2xl hover-target cursor-pointer"></i>
+            <i class="ph ph-list text-2xl hover-target cursor-pointer"></i>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="lg:hidden z-50 text-maroon text-3xl">
+            <i class="ph ph-list"></i>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-cream z-40 transform translate-x-full transition-transform duration-500 flex flex-col justify-center items-center space-y-8 font-serif text-3xl text-maroon">
+        <a href="#home" class="mobile-link">Home</a>
+        <a href="#collections" class="mobile-link">Collections</a>
+        <a href="#jewellery" class="mobile-link">Jewellery</a>
+        <a href="#our-story" class="mobile-link">Our Story</a>
+        <a href="#contact" class="mobile-link">Contact</a>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="relative h-screen w-full flex items-center bg-cream overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 w-full h-full lg:w-2/3 lg:left-1/3">
+            <img src="image_24f1ea.jpg" alt="Elegant model wearing Aurelia jewellery" class="w-full h-full object-cover object-top lg:object-center" />
+        </div>
+        
+        <!-- Gradient Overlay -->
+        <div class="absolute inset-0 w-full h-full hero-gradient pointer-events-none"></div>
+
+        <!-- Content -->
+        <div class="relative z-10 px-6 lg:px-20 w-full lg:w-1/2 mt-20 lg:mt-0 reveal-up">
+            <p class="text-xs tracking-[0.2em] text-maroon mb-4 font-semibold">AURELIA JEWELLERY HOUSE</p>
+            <h1 class="font-serif text-5xl lg:text-7xl text-maroon leading-tight mb-6">
+                Jewellery that <br/> becomes part <br/> of your story.
+            </h1>
+            <p class="font-sans text-gray-700 text-lg max-w-md mb-10 leading-relaxed">
+                Contemporary jewellery shaped by timeless craftsmanship, refined details and the beauty of individuality.
+            </p>
+            <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
+                <a href="#collections" class="hover-target px-8 py-4 bg-maroon text-cream font-sans tracking-widest text-sm uppercase text-center hover:bg-opacity-90 transition-all">Explore Collections</a>
+                <a href="#our-story" class="hover-target px-8 py-4 border border-maroon text-maroon font-sans tracking-widest text-sm uppercase text-center hover:bg-maroon hover:text-cream transition-all">Discover Our Story</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- BRAND INTRODUCTION -->
+    <section class="py-24 lg:py-32 bg-maroon text-cream relative overflow-hidden">
+        <div class="container mx-auto px-6 lg:px-16 flex flex-col lg:flex-row items-center gap-16">
+            <div class="w-full lg:w-1/2 reveal-up">
+                <p class="text-xs tracking-[0.2em] text-gold mb-4 uppercase">The Aurelia Edit</p>
+                <h2 class="font-serif text-4xl lg:text-6xl mb-8 leading-tight">Designed to be <br/> remembered.</h2>
+                <p class="font-sans text-lg lg:text-xl font-light text-cream/80 max-w-lg leading-relaxed">
+                    AURELIA brings together contemporary design and traditional craftsmanship to create jewellery that feels personal, refined and enduring.
+                </p>
+            </div>
+            <div class="w-full lg:w-1/2 relative h-[500px] reveal-up" style="transition-delay: 0.2s;">
+                <div class="absolute inset-0 image-zoom-container">
+                    <img src="https://images.unsplash.com/photo-1599643478514-4a820c56a8f0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Jewellery close up" class="w-full h-full object-cover">
+                </div>
+                <div class="absolute -bottom-10 -left-10 w-48 h-64 border-4 border-maroon image-zoom-container hidden md:block">
+                    <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Detail shot" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JEWELLERY CATALOGUE (Masterpieces) -->
+    <section id="jewellery" class="py-24 bg-cream">
+        <div class="container mx-auto px-6 lg:px-16">
+            <div class="text-center mb-16 reveal-up">
+                <h2 class="font-serif text-4xl lg:text-5xl text-maroon mb-4">Our Masterpieces</h2>
+                <p class="font-sans text-gray-600">Explore our signature designs crafted for elegance.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                <!-- Product 1 -->
+                <div class="group cursor-pointer hover-target reveal-up">
+                    <div class="relative overflow-hidden h-[400px] mb-6 bg-white">
+                        <img src="https://images.unsplash.com/photo-1605100804763-247f6612d540?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Aurelia Solitaire Ring">
+                        <div class="absolute inset-0 bg-maroon/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                            <span class="text-cream font-sans uppercase tracking-widest text-sm border-b border-cream pb-1">View Design</span>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-xs text-gray-500 tracking-widest uppercase mb-1">Élan Collection</p>
+                        <h3 class="font-serif text-xl text-maroon">Aurelia Solitaire Ring</h3>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="group cursor-pointer hover-target reveal-up" style="transition-delay: 0.1s;">
+                    <div class="relative overflow-hidden h-[400px] mb-6 bg-white">
+                        <!-- Replaced broken image with reliable Unsplash link -->
+                        <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Celeste Halo Necklace">
+                        <div class="absolute inset-0 bg-maroon/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                            <span class="text-cream font-sans uppercase tracking-widest text-sm border-b border-cream pb-1">View Design</span>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-xs text-gray-500 tracking-widest uppercase mb-1">Celeste Collection</p>
+                        <h3 class="font-serif text-xl text-maroon">Celeste Halo Necklace</h3>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="group cursor-pointer hover-target reveal-up" style="transition-delay: 0.2s;">
+                    <div class="relative overflow-hidden h-[400px] mb-6 bg-white">
+                        <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Noor Heritage Bangles">
+                        <div class="absolute inset-0 bg-maroon/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                            <span class="text-cream font-sans uppercase tracking-widest text-sm border-b border-cream pb-1">View Design</span>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-xs text-gray-500 tracking-widest uppercase mb-1">Noor Collection</p>
+                        <h3 class="font-serif text-xl text-maroon">Noor Heritage Bangles</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center reveal-up">
+                <a href="#" class="inline-block border-b border-maroon pb-1 text-maroon uppercase tracking-widest text-sm font-semibold hover:text-gold hover:border-gold transition-colors">Explore All Pieces</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- OUR STORY SECTION -->
+    <section id="our-story" class="py-24 bg-white">
+        <div class="container mx-auto px-6 lg:px-16 flex flex-col-reverse lg:flex-row items-center gap-16">
+            <div class="w-full lg:w-1/2 image-zoom-container h-[600px] reveal-up">
+                <img src="https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Artisan making jewellery" class="w-full h-full object-cover">
+            </div>
+            <div class="w-full lg:w-1/2 reveal-up">
+                <h2 class="font-serif text-4xl lg:text-5xl text-maroon mb-8">Born from a love for timeless beauty.</h2>
+                <p class="font-sans text-gray-600 mb-6 leading-relaxed">
+                    Every piece of AURELIA jewellery begins with a story. Inspired by the rich heritage of Indian craftsmanship and infused with contemporary minimalism, our designs bridge the gap between generations.
+                </p>
+                <p class="font-sans text-gray-600 mb-10 leading-relaxed">
+                    From the first sketch to the final polish, our master artisans pour hours of dedication into ensuring every curve, gemstone, and finish is absolute perfection.
+                </p>
+                <div class="flex space-x-6 text-sm font-sans tracking-widest uppercase text-maroon font-semibold">
+                    <span>Inspired</span> <span class="text-gold">→</span>
+                    <span>Designed</span> <span class="text-gold">→</span>
+                    <span>Crafted</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact" class="bg-maroon text-cream py-16 lg:py-24 border-t border-maroon/20">
+        <div class="container mx-auto px-6 lg:px-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- Brand Info -->
+                <div class="reveal-up">
+                    <h2 class="font-serif text-3xl mb-4">AURELIA</h2>
+                    <p class="font-sans text-cream/70 text-sm mb-6 max-w-xs">Contemporary jewellery, timelessly crafted. Find a piece that feels like you.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full border border-cream/30 flex items-center justify-center hover:bg-cream hover:text-maroon transition-colors hover-target"><i class="ph ph-instagram-logo text-xl"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-cream/30 flex items-center justify-center hover:bg-cream hover:text-maroon transition-colors hover-target"><i class="ph ph-pinterest-logo text-xl"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-cream/30 flex items-center justify-center hover:bg-cream hover:text-maroon transition-colors hover-target"><i class="ph ph-facebook-logo text-xl"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="reveal-up" style="transition-delay: 0.1s;">
+                    <h3 class="font-serif text-xl mb-6 text-gold">Explore</h3>
+                    <ul class="font-sans text-sm text-cream/80 space-y-3">
+                        <li><a href="#collections" class="hover:text-white transition-colors">Collections</a></li>
+                        <li><a href="#jewellery" class="hover:text-white transition-colors">Jewellery Catalogue</a></li>
+                        <li><a href="#our-story" class="hover:text-white transition-colors">Our Story</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Craftsmanship</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Journal</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="reveal-up" style="transition-delay: 0.2s;">
+                    <h3 class="font-serif text-xl mb-6 text-gold">Contact Us</h3>
+                    <ul class="font-sans text-sm text-cream/80 space-y-3">
+                        <li class="flex items-center space-x-2"><i class="ph ph-map-pin"></i> <span>Aurelia Studio, Design District, Udaipur</span></li>
+                        <li class="flex items-center space-x-2"><i class="ph ph-envelope-simple"></i> <span>enquiry@aureliajewellery.com</span></li>
+                        <li class="flex items-center space-x-2"><i class="ph ph-phone"></i> <span>+91 98765 43210</span></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="reveal-up" style="transition-delay: 0.3s;">
+                    <h3 class="font-serif text-xl mb-6 text-gold">The Aurelia World</h3>
+                    <p class="font-sans text-sm text-cream/80 mb-4">Subscribe to receive updates on new collections and exclusive editorial content.</p>
+                    <form class="flex border-b border-cream/30 pb-2">
+                        <input type="email" placeholder="Email Address" class="bg-transparent w-full outline-none font-sans text-sm placeholder-cream/50">
+                        <button type="submit" class="uppercase text-xs tracking-widest font-semibold hover:text-gold transition-colors hover-target">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-cream/20 pt-8 flex flex-col md:flex-row justify-between items-center font-sans text-xs text-cream/50 tracking-widest uppercase reveal-up">
+                <p>&copy; 2026 AURELIA JEWELLERY HOUSE.</p>
+                <div class="space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts for Vanilla JS Animations & Interactions -->
+    <script>
+        // Custom Cursor Logic
+        const cursor = document.getElementById('custom-cursor');
+        const hoverTargets = document.querySelectorAll('.hover-target, a, button');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        hoverTargets.forEach(target => {
+            target.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
+            target.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-cream', 'shadow-sm');
+                navbar.classList.remove('bg-transparent', 'py-6');
+                navbar.classList.add('py-4');
+            } else {
+                navbar.classList.add('bg-transparent', 'py-6');
+                navbar.classList.remove('bg-cream', 'shadow-sm', 'py-4');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        let isMenuOpen = false;
+
+        menuBtn.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            if(isMenuOpen) {
+                mobileMenu.classList.remove('translate-x-full');
+                menuBtn.innerHTML = '<i class="ph ph-x"></i>';
+            } else {
+                mobileMenu.classList.add('translate-x-full');
+                menuBtn.innerHTML = '<i class="ph ph-list"></i>';
+            }
+        });
+
+        // Close mobile menu on link click
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('translate-x-full');
+                menuBtn.innerHTML = '<i class="ph ph-list"></i>';
+                isMenuOpen = false;
+            });
+        });
+
+        // Intersection Observer for Scroll Animations (Replaces Framer Motion)
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Optional: Unobserve after animation runs once
+                    // observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-up').forEach((el) => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
